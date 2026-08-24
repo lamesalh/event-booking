@@ -480,3 +480,7 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+soft20181_starter/eventapp.db
+soft20181_starter/eventapp.db-shm
+soft20181_starter/eventapp.db-wal
+soft20181_starter/EventAppWork.sqlite
