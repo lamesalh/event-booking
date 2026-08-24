@@ -1,0 +1,24 @@
+@page "{id:int}"
+@model soft20181_starter.Pages.EventDetailModel
+@{
+    ViewData["Title"] = Model.Event?.Name ?? "Event Details";
+}
+@if (Model.Event != null)
+{
+    <section class="event-detail">
+        <div class="event-container">
+            <img src="@Model.Event.CoverPhoto" alt="@Model.Event.Name" />
+            <div class="event-info">
+                <h1>@Model.Event.Name</h1>
+                <p>Location: @Model.Event.Location</p>
+                <p>Date: @Model.Event.EventDateTime.ToString("dd MMM yyyy")</p>
+                <p>Description: @Model.Event.Description</p>
+                <a class="btn-book" href="#">Book Now</a>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <p>Event not found.</p>
+} 

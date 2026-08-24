@@ -1,0 +1,33 @@
+@page
+@model soft20181_starter.Pages.AttendingListModel
+@{
+    ViewData["Title"] = "My Attending List";
+}
+<div class="attending-list-container">
+    <h1>My Attending List</h1>
+    
+    @if (Model.AttendingEvents.Any())
+    {
+        <div class="events-grid">
+            @foreach (var attending in Model.AttendingEvents)
+            {
+                <div class="event-card">
+                    <img src="@attending.Event.CoverPhoto" alt="@attending.Event.Name" />
+                    <h3>@attending.Event.Name</h3>
+                    <p>@attending.Event.Location</p>
+                    <p class="date">@attending.Event.EventDateTime.ToString("dd MMM yyyy")</p>
+                    <a asp-page="/AttendingList" asp-page-handler="Remove" asp-route-id="@attending.Id" class="btn-remove">Remove</a>
+                </div>
+            }
+        </div>
+        <div class="ticket-section">
+            <h2>Generate Ticket</h2>
+            <a asp-page="/Ticket" class="btn-generate-ticket">Generate Ticket</a>
+        </div>
+    }
+    else
+    {
+        <p>You haven't added any events to your attending list yet.</p>
+        <a asp-page="/Events" class="btn-browse">Browse Events</a>
+    }
+</div> 

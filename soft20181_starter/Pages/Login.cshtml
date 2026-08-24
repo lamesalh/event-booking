@@ -1,0 +1,46 @@
+@page
+@model soft20181_starter.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<!-- EventEase Login Page -->
+<!-- Main Login Container -->
+<div class="login-container">
+    <div class="left-col">
+        <img src="/images/login-bg.jpg" alt="Login Background" />
+    </div>
+
+    <div class="right-col">
+        <h1>Sign In</h1>
+
+        <!-- Error Message Display -->
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="error-message" style="color: red; margin-bottom: 15px;">
+                @Model.ErrorMessage
+            </div>
+        }
+
+        <!-- Login Form -->
+        <form method="post">
+            <!-- Email Input Field -->
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" asp-for="Email" required />
+            </div>
+
+            <!-- Password Input Field -->
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" asp-for="Password" required />
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Sign In</button>
+        </form>
+
+        <!-- Registration Link -->
+        <p>Don't have an account? <a href="/Register">Register here</a></p>
+    </div>
+</div>

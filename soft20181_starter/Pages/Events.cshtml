@@ -1,0 +1,81 @@
+@page
+@model soft20181_starter.Pages.EventsModel
+@{
+    ViewData["Title"] = "Events";
+}
+
+<!-- EventEase Events Page -->
+<section class="search-section">
+    <input type="text" id="search-input" placeholder="Search for artists, dates, or venues..." />
+</section>
+
+<!-- Events Display Section -->
+@if (Model.Events.Any())
+{
+    <section class="artist-cards" id="artist-cards">
+        @foreach (var theEvent in Model.Events)
+        {
+            <div class="card">
+                <!-- Event Image -->
+                <img src="@theEvent.CoverPhoto" alt="@theEvent.Name" />
+
+                <!-- Event Information -->
+                <h3>@theEvent.Name</h3>
+                <p>@theEvent.Location</p>
+                <p class="date">@theEvent.EventDateTime.ToString("dd MMM yyyy")</p>
+
+                <!-- Event Actions -->
+                <div class="card-buttons">
+                    <!-- Navigation to Event Detail - Available to all users -->
+                    <a class="btn-book" asp-page="/EventDetail" asp-route-id="@theEvent.Id">Book Now</a>
+
+                    <!-- Add to List - Only for authenticated users -->
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <form method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="@theEvent.Id" />
+                            <button type="submit" asp-page-handler="AddToAttendingList" class="btn-add-to-list">Add to List</button>
+                        </form>
+                    }
+                </div>
+            </div>
+        }
+    </section>
+}
+else
+{
+    <!-- No Events Available Message -->
+    <div class="container">
+        <h1>No Events Available</h1>
+        <p>There are currently no events in the database.</p>
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <p>As an admin, you can add events through the Admin panel:</p>
+            <a asp-page="/Admin" class="btn-book">Go to Admin Panel</a>
+        }
+        else
+        {
+            <p>Please sign in to add events.</p>
+            <a asp-page="/Login" class="btn-login">Sign In</a>
+        }
+    </div>
+}
+
+@section Scripts {
+    <script>
+        // Simple client-side search filter
+        document.getElementById('search-input').addEventListener('input', function() {
+            var search = this.value.toLowerCase();
+            var cards = document.querySelectorAll('.artist-cards .card');
+
+            cards.forEach(function(card) {
+                var text = card.textContent.toLowerCase();
+                if (text.includes(search)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+}

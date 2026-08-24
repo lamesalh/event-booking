@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - EventEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="header">
+    <div class="container">
+      <div class="logo">
+        <h2>EventEase</h2>
+      </div>
+      <ul class="nav">
+        <li><a asp-area="" asp-page="/Index">Home</a></li>
+        <li><a asp-area="" asp-page="/Events">Events</a></li>
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+          <li><a asp-area="" asp-page="/Admin">Admin</a></li>
+          <li><a asp-area="" asp-page="/AttendingList">My List</a></li>
+        }
+        <li><a asp-area="" asp-page="/Contact">Contact</a></li>
+      </ul>
+      <div class="auth-buttons">
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+          <span>Welcome, @User.Identity?.Name!</span>
+          <a asp-page="/Logout" class="btn-login">Sign Out</a>
+        }
+        else
+        {
+          <a asp-page="/Login" class="btn-login">Sign In</a>
+          <a asp-page="/Register" class="btn-register">Register</a>
+        }
+      </div>
+    </div>
+  </nav>
+  <div class="main-content">
+    @RenderBody()
+  </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Lamiss Khaled.</p>
+    </div>
+  </footer>
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

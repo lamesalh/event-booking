@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+<header class="main" id="home">
+  <div class="container">
+    <h1>Discover Live Events Near You</h1>
+  </div>
+</header>
+<section class="carousel-section" id="concerts">
+  <div class="container">
+    <h2>Upcoming Concerts</h2>
+    <div class="carousel-wrapper">
+      <button class="carousel-btn left" onclick="moveSlide('concerts', -1)">&#10094;</button>
+      <div class="carousel-track-wrapper">
+        <div class="carousel-track" id="concerts-track">
+          <div class="carousel-item">
+            <img src="/images/21savage.jpeg" alt="21 Savage">
+            <h3>21 Savage Tour</h3>
+            <p>Wembley Stadium - London</p>
+          </div>
+          <div class="carousel-item">
+            <img src="/images/drake.jpeg" alt="Drake">
+            <h3>Drake Tour</h3>
+            <p>O2 Arena - London</p>
+          </div>
+          <div class="carousel-item">
+            <img src="/images/adele.jpeg" alt="Adele">
+            <h3>Adele</h3>
+            <p>Emirates Stadium - Manchester</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn right" onclick="moveSlide('concerts', 1)">&#10095;</button>
+    </div>
+  </div>
+</section>

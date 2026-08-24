@@ -1,0 +1,46 @@
+@page
+@model soft20181_starter.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="main">
+    <div class="container">
+        <h1>Join EventEase</h1>
+        <p>Create your account to start building your event list and never miss your favorite artists.</p>
+    </div>
+</div>
+
+<div class="search-section">
+    <div class="container">
+        <div class="contact-container">
+            <div class="left-col">
+                <h1>Join EventEase</h1>
+                <p>Create your account to start building your event list and never miss your favorite artists.</p>
+            </div>
+            <div class="right-col">
+                <h1>Create Account</h1>
+                <form method="post">
+                    <div>
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="Name" required />
+                    </div>
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="Email" required />
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="Password" required />
+                    </div>
+                    <div>
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" name="ConfirmPassword" required />
+                    </div>
+                    <button type="submit">Create Account</button>
+                </form>
+                <p>Already have an account? <a href="/Login">Sign in here</a></p>
+            </div>
+        </div>
+    </div>
+</div> 
